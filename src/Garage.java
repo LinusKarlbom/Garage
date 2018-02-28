@@ -43,6 +43,7 @@ public class Garage {
 				}
 			}
 			vehicleArray = newVehicleArray;
+			numberOfVehicles--;
 		}
 		else {
 			throw new NoVehicleWithThatIndexException();

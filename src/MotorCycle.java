@@ -1,4 +1,5 @@
 
+
 public class MotorCycle extends Vehicle {
 	
 	private int cylinderVolume;

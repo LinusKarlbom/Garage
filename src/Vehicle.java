@@ -29,7 +29,7 @@ public abstract class Vehicle {
 	}
 	
 	// this method gives the current status of the vehicle
-	public abstract boolean vehicleStatus ();
+	public abstract void toggleVehicle ();
 	
 	//this method will tell the type of the entered vehicle
 	public abstract String getVehicleType();

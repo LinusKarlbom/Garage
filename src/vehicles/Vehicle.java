@@ -16,7 +16,7 @@ public abstract class Vehicle implements Serializable {
 	}
 
 	public String getName() {
-		return color + " " + getVehicleType() + " with registrationNumber:" + registrationNumber;
+		return color + " " + getVehicleType() + " with registrationNumber: " + registrationNumber;
 	}
 
 	public String getRegistrationNumber() {

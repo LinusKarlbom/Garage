@@ -1,17 +1,28 @@
+package ui;
 import java.util.Scanner;
+
+import utilities.GarageFullException;
+import utilities.GarageHandler;
+import utilities.GarageNotFoundException;
+import utilities.MaximumNumberOfGaragesReachedException;
+import vehicles.Airplane;
+import vehicles.Boat;
+import vehicles.Buss;
+import vehicles.Car;
+import vehicles.Motorcycle;
+import vehicles.Vehicle;
 
 public class UItest {
 
 	public static void main(String[] args) {
 
-		boolean exit = false;
 		GarageHandler garageHandler = new GarageHandler(10);
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Welcome!");
 
 		printAvailibleOptions(garageHandler);
 		int input = haveUserChooseBetweenAvailibleOptions(scanner);
-		exit = executeTheCommand(garageHandler, input, scanner);
+		executeTheCommand(garageHandler, input, scanner);
 
 		try {
 			String vehicleList = garageHandler.listAllParkedVehicles(0);

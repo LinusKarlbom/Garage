@@ -1,6 +1,9 @@
+package vehicles;
+import java.io.Serializable;
 
-public class Buss extends Vehicle{
+public class Buss extends Vehicle implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private int numberOfSeats;
 	private boolean turnedOn;
 

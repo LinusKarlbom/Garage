@@ -1,4 +1,24 @@
+package ui;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
+
+import garage.Garage;
+import utilities.GarageFullException;
+import utilities.GarageHandler;
+import utilities.GarageNotFoundException;
+import utilities.MaximumNumberOfGaragesReachedException;
+import utilities.NoVehicleWithThatIndexException;
+import vehicles.Airplane;
+import vehicles.Boat;
+import vehicles.Buss;
+import vehicles.Car;
+import vehicles.Motorcycle;
+import vehicles.Vehicle;
 
 public class UI {
 
@@ -31,10 +51,13 @@ public class UI {
 			System.out.println("Input 5 in order to search for a parked vehicles.");
 			System.out.println("Input 6 in order to change the maximum capacity of a garage.");
 			System.out.println("Input 7 in order to create a new garage");
-			System.out.println("Input 8 in order to exit the application.");
+			System.out.println("Input 8 in order to save a garage to a file");
+			System.out.println("Input 9 in order to load a garage from a file");
+			System.out.println("Input 10 in order to exit the application.");
 		} else {
 			System.out.println("Input 1 in order to create a new garage");
-			System.out.println("Input 2 in order to exit the application.");
+			System.out.println("Input 2 in order to load a garage from a file");
+			System.out.println("Input 3 in order to exit the application.");
 		}
 	}
 
@@ -108,7 +131,6 @@ public class UI {
 				} else {
 					System.out.println("The search found: " + foundName);
 				}
-
 				break;
 			case 6:
 				choosenGarage = chooseAGarage(garageHandler, scanner);
@@ -126,6 +148,13 @@ public class UI {
 				}
 				break;
 			case 8:
+				choosenGarage = chooseAGarage(garageHandler, scanner);
+				saveGarage(garageHandler, choosenGarage);
+				break;
+			case 9:
+				loadGarage(garageHandler);
+				break;
+			case 10:
 				return true;
 			default:
 				System.out.println("Not a valid input");
@@ -142,6 +171,9 @@ public class UI {
 				}
 				break;
 			case 2:
+				loadGarage(garageHandler);
+				break;
+			case 3:
 				return true;
 			default:
 				System.out.println("Not a valid input");
@@ -271,5 +303,48 @@ public class UI {
 		}
 
 		return createdVehicle;
+	}
+
+	/*
+	 * Saves a garage to file.
+	 */
+	private static void saveGarage(GarageHandler garageHandler, int garageIndex) {
+		
+		FileOutputStream fos;
+		try {
+			fos = new FileOutputStream("savedGarage.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(garageHandler.getGarage(garageIndex));
+			oos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/*
+	 * Loads a garage from file.
+	 */
+	private static void loadGarage(GarageHandler garageHandler) {
+		
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream("savedGarage.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			Garage garage = (Garage) ois.readObject();
+			ois.close();
+			try {
+				garageHandler.addGarage(garage);
+			} catch (MaximumNumberOfGaragesReachedException e) {
+				System.out.println("Maximum number of garages reached, so a new one couldn't be added.");
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 }

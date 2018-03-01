@@ -1,6 +1,13 @@
+package garage;
+import java.io.Serializable;
 
-public class Garage {
+import utilities.GarageFullException;
+import utilities.NoVehicleWithThatIndexException;
+import vehicles.Vehicle;
 
+public class Garage implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private int maximumNumberOfVehicles;
 	private int numberOfVehicles;
 	private Vehicle[] vehicleArray;

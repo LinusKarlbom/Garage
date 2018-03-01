@@ -1,3 +1,7 @@
+package utilities;
+import garage.Garage;
+import vehicles.Vehicle;
+
 public class GarageHandler {
 
 	Garage[] garages;
@@ -19,6 +23,18 @@ public class GarageHandler {
 	public void addGarage(int maximumNumberOfVehicles) throws MaximumNumberOfGaragesReachedException {
 		if (numberOfGarages < maximumNumberOfGarages) {
 			garages[numberOfGarages] = new Garage(maximumNumberOfVehicles);
+			numberOfGarages++;
+		} else {
+			throw new MaximumNumberOfGaragesReachedException();
+		}
+	}
+	
+	/*
+	 * Adds a garage corresponding to the garage parameter to the GarageHandler's garages.
+	 */
+	public void addGarage(Garage garage) throws MaximumNumberOfGaragesReachedException {
+		if (numberOfGarages < maximumNumberOfGarages) {
+			garages[numberOfGarages] = garage;
 			numberOfGarages++;
 		} else {
 			throw new MaximumNumberOfGaragesReachedException();
@@ -122,6 +138,13 @@ public class GarageHandler {
 		garages[garageIndex].setMaximumNumberOfVehicles(maximumNumberOfVehicles);
 	}
 
+	/*
+	 * Returns a Garage corresponding to the garageIndex.
+	 */
+	public Garage getGarage(int garageIndex) {
+		return garages[garageIndex];
+	}
+	
 	public int getNumberOfGarages() {
 		return numberOfGarages;
 	}

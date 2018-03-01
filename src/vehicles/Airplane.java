@@ -1,6 +1,9 @@
+package vehicles;
+import java.io.Serializable;
 
-public class Airplane extends Vehicle {
+public class Airplane extends Vehicle implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private int numberOfEngines;
 	private boolean turnedOn;
 

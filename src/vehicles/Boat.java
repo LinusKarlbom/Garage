@@ -1,12 +1,15 @@
+package vehicles;
+import java.io.Serializable;
 
-public class Car extends Vehicle {
+public class Boat extends Vehicle implements Serializable{
 	
-	private String fuelType;
+	private static final long serialVersionUID = 1L;
+	private int length;
 	private boolean turnedOn;
 
-	public Car(String registrationNumber, String color, int numberOfWheels, String fuelType) {
+	public Boat(String registrationNumber, String color, int numberOfWheels, int length) {
 		super(registrationNumber, color, numberOfWheels);
-		this.fuelType = fuelType;
+		this.length = length;
 		turnedOn = false;
 	}
 
@@ -21,11 +24,11 @@ public class Car extends Vehicle {
 	}
 	
 	public  String getVehicleType() {
-		return "Car";
+		return "Boat";
 	}
 
-	public String getFuelType() {
-		return fuelType;
+	public int getLength() {
+		return length;
 	}
 	
 }

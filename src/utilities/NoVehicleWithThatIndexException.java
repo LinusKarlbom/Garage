@@ -1,3 +1,4 @@
+package utilities;
 
 public class NoVehicleWithThatIndexException extends Exception {
 

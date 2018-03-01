@@ -1,3 +1,12 @@
+package ui;
+import utilities.GarageFullException;
+import utilities.GarageHandler;
+import utilities.GarageNotFoundException;
+import utilities.MaximumNumberOfGaragesReachedException;
+import utilities.NoVehicleWithThatIndexException;
+import vehicles.Car;
+import vehicles.Motorcycle;
+import vehicles.Vehicle;
 
 public class test {
 

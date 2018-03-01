@@ -1,6 +1,9 @@
+package vehicles;
+import java.io.Serializable;
 
-public abstract class Vehicle {
+public abstract class Vehicle implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String registrationNumber;
 	private String color;
 	private int numberOfWheels;

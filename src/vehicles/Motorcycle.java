@@ -1,7 +1,9 @@
+package vehicles;
+import java.io.Serializable;
 
-
-public class Motorcycle extends Vehicle {
+public class Motorcycle extends Vehicle implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private int cylinderVolume;
 	private boolean turnedOn;
 

@@ -93,7 +93,7 @@ public class UI {
 				try {
 					garageHandler.unparkVehicle(choosenVehicle, choosenGarage);
 				} catch (NoVehicleWithThatIndexException e) {
-					System.out.println("Write something here");
+					System.out.println("There is no such vehicle");
 				}
 				break;
 			//List all parked vehicles.
@@ -203,7 +203,7 @@ public class UI {
 		boolean InvalidInput = true;
 		int choosenVehicle = 0;
 		while (InvalidInput) {
-			System.out.print("There exists garages corresponding to the integers ");
+			System.out.print("Choose a vehicle for which to perform the action. There exists vehicles corresponding to the integers ");
 
 			// Get the numbers of commas in garageHandler.listAllParkedVehicles(garage)
 			int numberOfCommas;
@@ -211,10 +211,12 @@ public class UI {
 				numberOfCommas = garageHandler.listAllParkedVehicles(garageNumber).length()
 						- garageHandler.listAllParkedVehicles(garageNumber).replace(",", "").length();
 
+				//there exists vehicles equal to the number of commas + 1
 				for (int i = 0; i < numberOfCommas; i++) {
-					System.out.println(i + ", ");
+					System.out.print(i + ", ");
 				}
-
+				System.out.println(numberOfCommas);
+				
 				choosenVehicle = scanner.nextInt();
 				if (choosenVehicle >= 0 && choosenVehicle < garageHandler.getNumberOfGarages()) {
 					InvalidInput = false;

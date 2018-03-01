@@ -40,7 +40,7 @@ public class Garage implements Serializable{
 	 * */
 	
 	public void addVehicle (Vehicle vehicle) throws GarageFullException {
-		if (numberOfVehicles <= maximumNumberOfVehicles) {
+		if (numberOfVehicles < maximumNumberOfVehicles) {
 			vehicleArray[numberOfVehicles] = vehicle;
 			numberOfVehicles++;
 		}

@@ -15,7 +15,7 @@ public class test {
 			e.printStackTrace();
 		}
 		
-		Vehicle vehicle1 = new MotorCycle("1A", "red", 2, 1);
+		Vehicle vehicle1 = new Motorcycle("1A", "red", 2, 1);
 		Vehicle vehicle2 = new Car("2A", "blue", 4, "gasoline");
 		Vehicle vehicle3 = new Car("3A", "green", 4, "gasoline");
 		
@@ -29,10 +29,15 @@ public class test {
 			e.printStackTrace();
 		}
 		
-		System.out.println(garageHandler.listAllParkedVehicles(0));
-		System.out.println(garageHandler.listAllParkedVehicles(1));
-		System.out.println(garageHandler.listAllParkedVehicleTypes(0));
-		System.out.println(garageHandler.listAllParkedVehicleTypes(1));
+		try {
+			System.out.println(garageHandler.listAllParkedVehicles(0));
+			System.out.println(garageHandler.listAllParkedVehicles(1));
+			System.out.println(garageHandler.listAllParkedVehicleTypes(0));
+			System.out.println(garageHandler.listAllParkedVehicleTypes(1));
+		} catch (GarageNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		try {
 			garageHandler.unparkVehicle(1, 1);
@@ -42,10 +47,15 @@ public class test {
 		}
 		System.out.println();
 		
-		System.out.println(garageHandler.listAllParkedVehicles(0));
-		System.out.println(garageHandler.listAllParkedVehicles(1));
-		System.out.println(garageHandler.listAllParkedVehicleTypes(0));
-		System.out.println(garageHandler.listAllParkedVehicleTypes(1));
+		try {
+			System.out.println(garageHandler.listAllParkedVehicles(0));
+			System.out.println(garageHandler.listAllParkedVehicles(1));
+			System.out.println(garageHandler.listAllParkedVehicleTypes(0));
+			System.out.println(garageHandler.listAllParkedVehicleTypes(1));
+		} catch (GarageNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

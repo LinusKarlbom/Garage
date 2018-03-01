@@ -1,11 +1,11 @@
 
 
-public class MotorCycle extends Vehicle {
+public class Motorcycle extends Vehicle {
 	
 	private int cylinderVolume;
 	private boolean turnedOn;
 
-	public MotorCycle(String registrationNumber, String color, int numberOfWheels, int cylinderVolume) {
+	public Motorcycle(String registrationNumber, String color, int numberOfWheels, int cylinderVolume) {
 		super(registrationNumber, color, numberOfWheels);
 		this.cylinderVolume = cylinderVolume;
 		turnedOn = false;

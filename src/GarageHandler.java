@@ -27,9 +27,13 @@ public class GarageHandler {
 
 	/*
 	 * Returns a String with a list of all Vehicles among the Vehicles in the Garage
-	 * corresponding to the garageIndex parameter.
+	 * corresponding to the garageIndex parameter if it exists and throws a
+	 * GarageNotFoundException if it doesn't exist.
 	 */
-	public String listAllParkedVehicles(int garageIndex) {
+	public String listAllParkedVehicles(int garageIndex) throws GarageNotFoundException {
+		if (garageIndex >= numberOfGarages) {
+			throw new GarageNotFoundException();
+		}
 		StringBuilder vehicleList = new StringBuilder();
 		int numberOfVehicles = garages[garageIndex].getNumberOfVehicles();
 		Vehicle[] vehicles = garages[garageIndex].getVehicles();
@@ -49,9 +53,13 @@ public class GarageHandler {
 
 	/*
 	 * Returns a String with a list of all VehicleTypes among the Vehicles in the
-	 * Garage corresponding to the garageIndex parameter.
+	 * Garage corresponding to the garageIndex parameter if it exists and throws a
+	 * GarageNotFoundException if it doesn't exist.
 	 */
-	public String listAllParkedVehicleTypes(int garageIndex) {
+	public String listAllParkedVehicleTypes(int garageIndex) throws GarageNotFoundException {
+		if (garageIndex >= numberOfGarages) {
+			throw new GarageNotFoundException();
+		}
 		StringBuilder vehicleTypeList = new StringBuilder();
 		int numberOfVehicles = garages[garageIndex].getNumberOfVehicles();
 		Vehicle[] vehicles = garages[garageIndex].getVehicles();
@@ -105,6 +113,14 @@ public class GarageHandler {
 	 */
 	public void unparkVehicle(int vehicleIndex, int garageIndex) throws NoVehicleWithThatIndexException {
 		garages[garageIndex].removeVehicle(vehicleIndex);
+	}
+
+	/*
+	 * Changes the maximum number of Vehicles for the Garage corresponding to the
+	 * garageIndex parameter.
+	 */
+	public void changeMaximumNumberOfVehiclesForAGarage(int maximumNumberOfVehicles, int garageIndex) {
+		garages[garageIndex].setMaximumNumberOfVehicles(maximumNumberOfVehicles);
 	}
 
 	public int getNumberOfGarages() {

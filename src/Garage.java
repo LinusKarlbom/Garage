@@ -16,6 +16,10 @@ public class Garage {
 		return maximumNumberOfVehicles;
 	}
 	
+	public void setMaximumNumberOfVehicles(int maximumNumberOfVehicles) {
+		this.maximumNumberOfVehicles = maximumNumberOfVehicles;
+	}
+
 	public int getNumberOfVehicles() {
 		return numberOfVehicles;
 	}

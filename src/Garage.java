@@ -47,9 +47,10 @@ public class Garage {
 		if (index < numberOfVehicles && index >= 0) {
 			Vehicle[] newVehicleArray = new Vehicle[maximumNumberOfVehicles];
 			int counter = 0;
-			for (int i = 0; i <= index; i++) {
+			for (int i = 0; i < numberOfVehicles; i++) {
 				if (i != index) {
 					newVehicleArray[counter] = vehicleArray[i];
+					counter++;
 				}
 			}
 			vehicleArray = newVehicleArray;

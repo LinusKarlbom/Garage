@@ -13,7 +13,10 @@ public abstract class Vehicle {
 		this.numberOfWheels = numberOfWheels;
 	}
 
-
+	public String getName() {
+		return color + " " + getVehicleType() + " with registrationNumber:" + registrationNumber;
+	}
+	
 	public String getRegistrationNumber() {
 		return registrationNumber;
 	}

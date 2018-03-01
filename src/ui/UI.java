@@ -50,9 +50,9 @@ public class UI {
 			System.out.println("Input 4 in order to list all types of parked vehicles.");
 			System.out.println("Input 5 in order to search for a parked vehicles.");
 			System.out.println("Input 6 in order to change the maximum capacity of a garage.");
-			System.out.println("Input 7 in order to create a new garage");
-			System.out.println("Input 8 in order to save a garage to a file");
-			System.out.println("Input 9 in order to load a garage from a file");
+			System.out.println("Input 7 in order to create a new garage.");
+			System.out.println("Input 8 in order to save a garage to a file.");
+			System.out.println("Input 9 in order to load a garage from a file.");
 			System.out.println("Input 10 in order to exit the application.");
 		} else {
 			System.out.println("Input 1 in order to create a new garage");
@@ -76,6 +76,7 @@ public class UI {
 	private static boolean executeTheCommand(GarageHandler garageHandler, int input, Scanner scanner) {
 		if (garageHandler.getNumberOfGarages() > 0) {
 			switch (input) {
+			//Park a vehicle.
 			case 1:
 				int choosenGarage = chooseAGarage(garageHandler, scanner);
 				Vehicle vehicle = haveUserCreateAVehicle(scanner);
@@ -85,6 +86,7 @@ public class UI {
 					System.out.println("The garage is full, so the parking could not be done.");
 				}
 				break;
+			//Unpark a vehicle.
 			case 2:
 				choosenGarage = chooseAGarage(garageHandler, scanner);
 				int choosenVehicle = chooseAVehicle(garageHandler, choosenGarage, scanner);
@@ -94,6 +96,7 @@ public class UI {
 					System.out.println("Write something here");
 				}
 				break;
+			//List all parked vehicles.
 			case 3:
 				choosenGarage = chooseAGarage(garageHandler, scanner);
 				String vehicleList;
@@ -108,6 +111,7 @@ public class UI {
 					System.out.println("There is no such garage.");
 				}
 				break;
+			//List all types of parked vehicles.
 			case 4:
 				choosenGarage = chooseAGarage(garageHandler, scanner);
 				try {
@@ -121,6 +125,7 @@ public class UI {
 					System.out.println("There is no such garage.");
 				}
 				break;
+			//Search for a parked vehicles.
 			case 5:
 				choosenGarage = chooseAGarage(garageHandler, scanner);
 				System.out.println("Input the registration number of the vehicle to search for");
@@ -132,12 +137,14 @@ public class UI {
 					System.out.println("The search found: " + foundName);
 				}
 				break;
+			//Change the maximum capacity of a garage.
 			case 6:
 				choosenGarage = chooseAGarage(garageHandler, scanner);
 				System.out.println("How many vehicles do you want the garage to be able to hold?");
 				int maximumNumberOfVehicles = scanner.nextInt();
 				garageHandler.changeMaximumNumberOfVehiclesForAGarage(maximumNumberOfVehicles, choosenGarage);
 				break;
+			//Create a new garage.
 			case 7:
 				System.out.println("How many vehicles do you want the garage to be able to hold?");
 				maximumNumberOfVehicles = scanner.nextInt();
@@ -147,13 +154,16 @@ public class UI {
 					System.out.println("Maximum number of garages reached");
 				}
 				break;
+			//Save a garage to a file.
 			case 8:
 				choosenGarage = chooseAGarage(garageHandler, scanner);
 				saveGarage(garageHandler, choosenGarage);
 				break;
+			//Load a garage from a file.
 			case 9:
 				loadGarage(garageHandler);
 				break;
+			//Exit the application.
 			case 10:
 				return true;
 			default:
@@ -161,6 +171,7 @@ public class UI {
 			}
 		} else {
 			switch (input) {
+			//Create a new garage.
 			case 1:
 				System.out.println("How many vehicles do you want the garage to be able to hold?");
 				int maximumNumberOfVehicles = scanner.nextInt();
@@ -170,9 +181,11 @@ public class UI {
 					System.out.println("Maximum number of garages reached");
 				}
 				break;
+			//Load a garage from a file.
 			case 2:
 				loadGarage(garageHandler);
 				break;
+			//Exit the application.
 			case 3:
 				return true;
 			default:
@@ -271,26 +284,31 @@ public class UI {
 			scanner.nextLine();
 
 			switch (vehicleTypeInt) {
+			//A car is created.
 			case 1:
 				System.out.println("Input the fuel type of the car");
 				String fuelType = scanner.nextLine();
 				createdVehicle = new Car(registrationNumeber, color, numberOfWheels, fuelType);
 				break;
+			//A motorcycle is created.
 			case 2:
 				System.out.println("Input the cylinder volume of the motorcycle");
 				int cylinderVolume = scanner.nextInt();
 				createdVehicle = new Motorcycle(registrationNumeber, color, numberOfWheels, cylinderVolume);
 				break;
+			//A buss is created.
 			case 3:
 				System.out.println("Input the number of seats for the buss");
 				int numberOfSeats = scanner.nextInt();
 				createdVehicle = new Buss(registrationNumeber, color, numberOfWheels, numberOfSeats);
 				break;
+			//A boat is created.
 			case 4:
 				System.out.println("Input the length of the boat");
 				int length = scanner.nextInt();
 				createdVehicle = new Boat(registrationNumeber, color, numberOfWheels, length);
 				break;
+			//An airplane is created.
 			case 5:
 				System.out.println("Input the number of engines of the airplane");
 				int numberOfEngines = scanner.nextInt();

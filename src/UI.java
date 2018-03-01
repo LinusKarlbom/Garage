@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-
-
 public class UI {
 
 	public static void main(String[] args) {
@@ -19,6 +17,10 @@ public class UI {
 		System.out.println("Goodbye!");
 	}
 
+	/*
+	 * Prints the options available to the user for a certain GarageHandler
+	 * parameter.
+	 */
 	private static void printAvailibleOptions(GarageHandler garageHandler) {
 		if (garageHandler.getNumberOfGarages() > 0) {
 			System.out.println();
@@ -36,12 +38,18 @@ public class UI {
 		}
 	}
 
+	/*
+	 * Takes user input for which option to choose.
+	 */
 	private static int haveUserChooseBetweenAvailibleOptions(Scanner scanner) {
 		int choice = scanner.nextInt();
 		scanner.nextLine();
 		return choice;
 	}
 
+	/*
+	 * Executes the command corresponding to the input parameter.
+	 */
 	private static boolean executeTheCommand(GarageHandler garageHandler, int input, Scanner scanner) {
 		if (garageHandler.getNumberOfGarages() > 0) {
 			switch (input) {
@@ -77,7 +85,7 @@ public class UI {
 					System.out.println("There is no such garage.");
 				}
 				break;
-			case 4:				
+			case 4:
 				choosenGarage = chooseAGarage(garageHandler, scanner);
 				try {
 					vehicleList = garageHandler.listAllParkedVehicleTypes(choosenGarage);
@@ -95,13 +103,12 @@ public class UI {
 				System.out.println("Input the registration number of the vehicle to search for");
 				String registrationNumeber = scanner.nextLine();
 				String foundName = garageHandler.findVehicle(registrationNumeber, choosenGarage).getName();
-				if(foundName == null) {
+				if (foundName == null) {
 					System.out.println("No matching vehicle found.");
-				}
-				else {
+				} else {
 					System.out.println("The search found: " + foundName);
 				}
-				
+
 				break;
 			case 6:
 				choosenGarage = chooseAGarage(garageHandler, scanner);
@@ -143,21 +150,26 @@ public class UI {
 		return false;
 	}
 
+	/*
+	 * Has the user choose among the parked vehicles in a garage and returns the
+	 * index corresponding to that vehicle.
+	 */
 	private static int chooseAVehicle(GarageHandler garageHandler, int garage, Scanner scanner) {
 		boolean InvalidInput = true;
 		int choosenVehicle = 0;
 		while (InvalidInput) {
 			System.out.print("There exists garages corresponding to the integers ");
-			
-			//Get the numbers of commas in garageHandler.listAllParkedVehicles(garage)
+
+			// Get the numbers of commas in garageHandler.listAllParkedVehicles(garage)
 			int numberOfCommas;
 			try {
-				numberOfCommas = garageHandler.listAllParkedVehicles(garage).length() - garageHandler.listAllParkedVehicles(garage).replace(",", "").length();
-				
+				numberOfCommas = garageHandler.listAllParkedVehicles(garage).length()
+						- garageHandler.listAllParkedVehicles(garage).replace(",", "").length();
+
 				for (int i = 0; i < numberOfCommas; i++) {
 					System.out.println(i + ", ");
 				}
-				
+
 				choosenVehicle = scanner.nextInt();
 				if (choosenVehicle >= 0 && choosenVehicle < garageHandler.getNumberOfGarages()) {
 					InvalidInput = false;
@@ -173,11 +185,16 @@ public class UI {
 		return choosenVehicle;
 	}
 
+	/*
+	 * Has the user choose among the created garages and returns the index
+	 * corresponding to that garage.
+	 */
 	private static int chooseAGarage(GarageHandler garageHandler, Scanner scanner) {
 		boolean InvalidInput = true;
 		int choosenGarage = 0;
 		while (InvalidInput) {
-			System.out.print("Choose a garage for which to perform the action. There exists garages corresponding to the integers ");
+			System.out.print(
+					"Choose a garage for which to perform the action. There exists garages corresponding to the integers ");
 			for (int i = 0; i < garageHandler.getNumberOfGarages(); i++) {
 				System.out.println(i + ", ");
 			}
@@ -194,6 +211,9 @@ public class UI {
 		return choosenGarage;
 	}
 
+	/*
+	 * Has the user create a vehicle and returns that vehicle.
+	 */
 	private static Vehicle haveUserCreateAVehicle(Scanner scanner) {
 
 		boolean InvalidInput = true;
@@ -217,7 +237,7 @@ public class UI {
 			System.out.println("Input the number of wheels of the vehicle");
 			int numberOfWheels = scanner.nextInt();
 			scanner.nextLine();
-			
+
 			switch (vehicleTypeInt) {
 			case 1:
 				System.out.println("Input the fuel type of the car");

@@ -31,8 +31,8 @@ public class UI {
 
 		while (exit == false) {
 			printAvailibleOptions(garageHandler);
-			int input = haveUserChooseBetweenAvailibleOptions(scanner);
-			exit = executeTheCommand(garageHandler, input, scanner);
+			int input = chooseAnOption(scanner);
+			exit = executeACommand(garageHandler, input, scanner);
 		}
 		System.out.println("Goodbye!");
 	}
@@ -64,7 +64,7 @@ public class UI {
 	/*
 	 * Takes user input for which option to choose.
 	 */
-	private static int haveUserChooseBetweenAvailibleOptions(Scanner scanner) {
+	private static int chooseAnOption(Scanner scanner) {
 		int choice = scanner.nextInt();
 		scanner.nextLine();
 		return choice;
@@ -73,9 +73,9 @@ public class UI {
 	/*
 	 * Executes the command corresponding to the input parameter.
 	 */
-	private static boolean executeTheCommand(GarageHandler garageHandler, int input, Scanner scanner) {
+	private static boolean executeACommand(GarageHandler garageHandler, int choosenOption, Scanner scanner) {
 		if (garageHandler.getNumberOfGarages() > 0) {
-			switch (input) {
+			switch (choosenOption) {
 			//Park a vehicle.
 			case 1:
 				int choosenGarage = chooseAGarage(garageHandler, scanner);
@@ -170,7 +170,7 @@ public class UI {
 				System.out.println("Not a valid input");
 			}
 		} else {
-			switch (input) {
+			switch (choosenOption) {
 			//Create a new garage.
 			case 1:
 				System.out.println("How many vehicles do you want the garage to be able to hold?");
@@ -199,7 +199,7 @@ public class UI {
 	 * Has the user choose among the parked vehicles in a garage and returns the
 	 * index corresponding to that vehicle.
 	 */
-	private static int chooseAVehicle(GarageHandler garageHandler, int garage, Scanner scanner) {
+	private static int chooseAVehicle(GarageHandler garageHandler, int garageNumber, Scanner scanner) {
 		boolean InvalidInput = true;
 		int choosenVehicle = 0;
 		while (InvalidInput) {
@@ -208,8 +208,8 @@ public class UI {
 			// Get the numbers of commas in garageHandler.listAllParkedVehicles(garage)
 			int numberOfCommas;
 			try {
-				numberOfCommas = garageHandler.listAllParkedVehicles(garage).length()
-						- garageHandler.listAllParkedVehicles(garage).replace(",", "").length();
+				numberOfCommas = garageHandler.listAllParkedVehicles(garageNumber).length()
+						- garageHandler.listAllParkedVehicles(garageNumber).replace(",", "").length();
 
 				for (int i = 0; i < numberOfCommas; i++) {
 					System.out.println(i + ", ");

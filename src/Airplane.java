@@ -24,4 +24,8 @@ public class Airplane extends Vehicle {
 		return "Airplane";
 	}
 
+	public int getNumberOfEngines() {
+		return numberOfEngines;
+	}
+
 }

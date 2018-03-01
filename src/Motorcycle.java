@@ -25,4 +25,8 @@ public class Motorcycle extends Vehicle {
 		return "Motorcycle";
 	}
 
+	public int getCylinderVolume() {
+		return cylinderVolume;
+	}
+
 }

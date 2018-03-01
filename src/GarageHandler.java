@@ -84,7 +84,6 @@ public class GarageHandler {
 	 * Returns one of the Vehicles in a Garage with matching registration number if
 	 * one exists. Returns null if no matching Vehicle is found.
 	 */
-
 	public Vehicle findVehicle(String registrationNumber, int garageIndex) {
 		int numberOfVehicles = garages[garageIndex].getNumberOfVehicles();
 		Vehicle foundVehicle = null;

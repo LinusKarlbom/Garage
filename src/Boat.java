@@ -23,4 +23,9 @@ public class Boat extends Vehicle{
 	public  String getVehicleType() {
 		return "Boat";
 	}
+
+	public int getLength() {
+		return length;
+	}
+	
 }

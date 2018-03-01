@@ -23,4 +23,9 @@ public class Car extends Vehicle {
 	public  String getVehicleType() {
 		return "Car";
 	}
+
+	public String getFuelType() {
+		return fuelType;
+	}
+	
 }

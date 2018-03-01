@@ -24,4 +24,8 @@ public class Buss extends Vehicle{
 		return "Buss";
 	}
 
+	public int getNumberOfSeats() {
+		return numberOfSeats;
+	}
+
 }

@@ -130,10 +130,11 @@ public class UI {
 				choosenGarage = chooseAGarage(garageHandler, scanner);
 				System.out.println("Input the registration number of the vehicle to search for");
 				String registrationNumeber = scanner.nextLine();
-				String foundName = garageHandler.findVehicle(registrationNumeber, choosenGarage).getName();
-				if (foundName == null) {
+				Vehicle foundVehicle = garageHandler.findVehicle(registrationNumeber, choosenGarage);
+				if (foundVehicle == null) {
 					System.out.println("No matching vehicle found.");
 				} else {
+					String foundName = foundVehicle.getName();
 					System.out.println("The search found: " + foundName);
 				}
 				break;

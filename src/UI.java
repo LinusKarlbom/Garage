@@ -16,18 +16,20 @@ public class UI {
 			int input = haveUserChooseBetweenAvailibleOptions(scanner);
 			exit = executeTheCommand(garageHandler, input, scanner);
 		}
+		System.out.println("Goodbye!");
 	}
 
 	private static void printAvailibleOptions(GarageHandler garageHandler) {
 		if (garageHandler.getNumberOfGarages() > 0) {
 			System.out.println();
-			System.out.println("Input 1 in order to park a vehicle..");
+			System.out.println("Input 1 in order to park a vehicle.");
 			System.out.println("Input 2 in order to unpark a vehicle.");
 			System.out.println("Input 3 in order to list all parked vehicles.");
 			System.out.println("Input 4 in order to list all types of parked vehicles.");
-			System.out.println("Input 5 in order to change the maximum capacity of a garage.");
-			System.out.println("Input 6 in order to create a new garage");
-			System.out.println("Input 7 in order to exit the application.");
+			System.out.println("Input 5 in order to search for a parked vehicles.");
+			System.out.println("Input 6 in order to change the maximum capacity of a garage.");
+			System.out.println("Input 7 in order to create a new garage");
+			System.out.println("Input 8 in order to exit the application.");
 		} else {
 			System.out.println("Input 1 in order to create a new garage");
 			System.out.println("Input 2 in order to exit the application.");
@@ -35,7 +37,9 @@ public class UI {
 	}
 
 	private static int haveUserChooseBetweenAvailibleOptions(Scanner scanner) {
-		return scanner.nextInt();
+		int choice = scanner.nextInt();
+		scanner.nextLine();
+		return choice;
 	}
 
 	private static boolean executeTheCommand(GarageHandler garageHandler, int input, Scanner scanner) {
@@ -61,27 +65,51 @@ public class UI {
 				break;
 			case 3:
 				choosenGarage = chooseAGarage(garageHandler, scanner);
+				String vehicleList;
 				try {
-					System.out.println(garageHandler.listAllParkedVehicles(choosenGarage));
-				} catch (GarageNotFoundException e1) {
+					vehicleList = garageHandler.listAllParkedVehicles(choosenGarage);
+					if (vehicleList.length() > 0) {
+						System.out.println(vehicleList);
+					} else {
+						System.out.println("There are no vehicles in the garage.");
+					}
+				} catch (GarageNotFoundException e2) {
 					System.out.println("There is no such garage.");
 				}
 				break;
-			case 4:
+			case 4:				
 				choosenGarage = chooseAGarage(garageHandler, scanner);
 				try {
-					System.out.println(garageHandler.listAllParkedVehicleTypes(choosenGarage));
-				} catch (GarageNotFoundException e1) {
+					vehicleList = garageHandler.listAllParkedVehicleTypes(choosenGarage);
+					if (vehicleList.length() > 0) {
+						System.out.println(vehicleList);
+					} else {
+						System.out.println("There are no vehicles in the garage.");
+					}
+				} catch (GarageNotFoundException e2) {
 					System.out.println("There is no such garage.");
 				}
 				break;
 			case 5:
 				choosenGarage = chooseAGarage(garageHandler, scanner);
+				System.out.println("Input the registration number of the vehicle to search for");
+				String registrationNumeber = scanner.nextLine();
+				String foundName = garageHandler.findVehicle(registrationNumeber, choosenGarage).getName();
+				if(foundName == null) {
+					System.out.println("No matching vehicle found.");
+				}
+				else {
+					System.out.println("The search found: " + foundName);
+				}
+				
+				break;
+			case 6:
+				choosenGarage = chooseAGarage(garageHandler, scanner);
 				System.out.println("How many vehicles do you want the garage to be able to hold?");
 				int maximumNumberOfVehicles = scanner.nextInt();
 				garageHandler.changeMaximumNumberOfVehiclesForAGarage(maximumNumberOfVehicles, choosenGarage);
 				break;
-			case 6:
+			case 7:
 				System.out.println("How many vehicles do you want the garage to be able to hold?");
 				maximumNumberOfVehicles = scanner.nextInt();
 				try {
@@ -90,7 +118,7 @@ public class UI {
 					System.out.println("Maximum number of garages reached");
 				}
 				break;
-			case 7:
+			case 8:
 				return true;
 			default:
 				System.out.println("Not a valid input");
@@ -141,6 +169,7 @@ public class UI {
 			}
 
 		}
+		scanner.nextLine();
 		return choosenVehicle;
 	}
 
@@ -161,6 +190,7 @@ public class UI {
 			}
 
 		}
+		scanner.nextLine();
 		return choosenGarage;
 	}
 
@@ -177,23 +207,42 @@ public class UI {
 			System.out.println("Input 5 in order to create a airplane");
 
 			int vehicleTypeInt = scanner.nextInt();
+			scanner.nextLine();
 			InvalidInput = false;
 
+			System.out.println("Input the registration number of the vehicle");
+			String registrationNumeber = scanner.nextLine();
+			System.out.println("Input the color of the vehicle");
+			String color = scanner.nextLine();
+			System.out.println("Input the number of wheels of the vehicle");
+			int numberOfWheels = scanner.nextInt();
+			scanner.nextLine();
+			
 			switch (vehicleTypeInt) {
 			case 1:
-				createdVehicle = new Car("1", "red", 4, "gasoline");
+				System.out.println("Input the fuel type of the car");
+				String fuelType = scanner.nextLine();
+				createdVehicle = new Car(registrationNumeber, color, numberOfWheels, fuelType);
 				break;
 			case 2:
-				createdVehicle = new Motorcycle("2", "red", 2, 5);
+				System.out.println("Input the cylinder volume of the motorcycle");
+				int cylinderVolume = scanner.nextInt();
+				createdVehicle = new Motorcycle(registrationNumeber, color, numberOfWheels, cylinderVolume);
 				break;
 			case 3:
-				createdVehicle = new Buss("3", "red", 4, 20);
+				System.out.println("Input the number of seats for the buss");
+				int numberOfSeats = scanner.nextInt();
+				createdVehicle = new Buss(registrationNumeber, color, numberOfWheels, numberOfSeats);
 				break;
 			case 4:
-				createdVehicle = new Boat("4", "red", 0, 2);
+				System.out.println("Input the length of the boat");
+				int length = scanner.nextInt();
+				createdVehicle = new Boat(registrationNumeber, color, numberOfWheels, length);
 				break;
 			case 5:
-				createdVehicle = new Airplane("5", "red", 3, 2);
+				System.out.println("Input the number of engines of the airplane");
+				int numberOfEngines = scanner.nextInt();
+				createdVehicle = new Airplane(registrationNumeber, color, numberOfWheels, numberOfEngines);
 				break;
 			default:
 				InvalidInput = true;
